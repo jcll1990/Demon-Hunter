@@ -15,7 +15,6 @@ class Player:
         self.rel = 0
         self.health_recovery_delay = 700
         self.time_prev = pg.time.get_ticks()
-        # diagonal movement correction
         self.diag_move_corr = 1 / math.sqrt(2)
         self.y_pos = self.game.minimap.y_pos
 
@@ -88,13 +87,7 @@ class Player:
             dy += speed_cos 
 
         self.check_wall_collision (dx, dy)
-
-#        if keys[pg.K_LEFT]:
-#            self.angle -= PLAYER_ROT_SPEED * self.game.delta_time
-#        if keys[pg.K_RIGHT]:
-#            self.angle += PLAYER_ROT_SPEED * self.game.delta_time
         self.angle %= 2* math.pi
-#       open the 3# here to see in 2d... then in main, draw inster # to sef.object_render.draw. and remvoe the 2# below it
 
 
     def draw(self): 
@@ -107,8 +100,7 @@ class Player:
         
        
  
-        pg.draw.circle(self.game.screen, 'green', (self.x * 12, (self.y_pos + self.y *12)), 5) #this draws the player as a circle in the 2D game
-
+        pg.draw.circle(self.game.screen, 'green', (self.x * 12, (self.y_pos + self.y *12)), 5) 
     def mouse_control(self):
         mx, my = pg.mouse.get_pos()
         if mx < MOUSE_BORDER_LEFT or mx > MOUSE_BORDER_RIGTH:
@@ -119,7 +111,7 @@ class Player:
     
 
     def check_wall(self,x, y):
-        return (x, y) not in self.game.map.world_map #checks if the "tile" is empty
+        return (x, y) not in self.game.map.world_map
 
     def check_wall_collision(self, dx, dy):
 

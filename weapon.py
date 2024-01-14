@@ -10,7 +10,7 @@ class Weapon:
         self.game = game
         self.key = 1
         self.path ='resources/sprites/weapon/shotgun/'
-        self.scale = .1  # Adjust the scale to make the image smaller
+        self.scale = .1 
         self.animation_time = 90
         self.images = []
         self.num_images = 0
@@ -47,7 +47,7 @@ class Weapon:
                 img = pg.image.load(file_path).convert_alpha()
                 images.append(img)
 
-        self.path = path  # Update the self.path attribute with the selected path
+        self.path = path 
         self.images = images
         self.num_images = len(images)
         self.image = images[0]
@@ -59,7 +59,7 @@ class Weapon:
         if self.reloading:
             self.game.player.shot = False
             if self.animation_trigger:
-                self.images.rotate()
+                self.images.rotate(-1)
                 self.image = self.images[0]
                 self.frame_counter += 1
                 if self.frame_counter == self.num_images:
@@ -72,11 +72,18 @@ class Weapon:
         self.change_weapon()
 
     def draw(self):
-        
-        self.game.screen.blit(self.image, (
-            HALF_WIDTH - self.images[0].get_width()  // 2,
-            HEIGHT - self.images[0].get_height() * self.scale  -500  # Adjust the vertical position (e.g., subtract 20 pixels)
-        ))
+        if self.key == 1:
+            self.game.screen.blit(self.image, (
+                HALF_WIDTH - self.images[0].get_width() // 2,
+                HEIGHT - self.images[0].get_height() * self.scale * 0.75 - 600
+            ))
+
+
+        elif self.key == 2:
+            self.game.screen.blit(self.image, (
+                HALF_WIDTH - self.images[0].get_width()  // 2,
+                HEIGHT - self.images[0].get_height() * self.scale  -400  
+            ))
 
 
     def animate(self, images):

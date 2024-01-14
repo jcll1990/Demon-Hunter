@@ -20,7 +20,7 @@ class Game:
 
 
         pg.init()
-#       pg.mouse.set_visible(False)
+        pg.mouse.set_visible(False)
         self.screen = pg.display.set_mode(RES)
         pg.event.set_grab(True)
         self.clock = pg.time.Clock()
@@ -64,7 +64,7 @@ class Game:
         self.weapon.draw()
         self.minimap.draw()
 #        self.map.draw()
- #       self.screen.fill("black")
+#        self.screen.fill("black")
         self.player.draw()  
         
       
