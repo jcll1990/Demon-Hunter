@@ -211,7 +211,7 @@ class CacoDemonNPC(NPC):
                  scale=0.7, shift=0.27, animation_time=250):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 1.0
-        self.health = 150
+        self.health = 400
         
         self.attack_damage = 25
         self.speed = 0.05
@@ -222,7 +222,7 @@ class CyberDemonNPC(NPC):
                  scale=1.0, shift=0.04, animation_time=210):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 6
-        self.health = 350
+        self.health = 800
         self.attack_damage = 15
         self.speed = 0.055
         self.accuracy = 0.25

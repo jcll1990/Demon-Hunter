@@ -55,7 +55,9 @@ class Game:
         self.weapon.update()
         pg.display.flip()
         self.delta_time = self.clock.tick(FPS)
-        pg.display.set_caption(f'Player X: {self.player.x} - Player Y: {self.player.y}')
+        pg.display.set_caption("Damage: " + str(self.weapon.damage))
+
+
 
 
 

@@ -110,7 +110,7 @@ class healthPOT:
 
     def pickItem(self):
 
-        if self.picked == False and self.x -1.2 < self.game.player.x < self.x +1.2 and  self.y -1.2 < self.game.player.y < self.y +1.2:
+        if self.picked == False and self.x -0.8 < self.game.player.x < self.x +0.8 and  self.y -0.8 < self.game.player.y < self.y +0.8:
             self.picked=True
             self.game.player.health += 50
             self.x = 0
@@ -171,12 +171,15 @@ class shoutgun:
 
     def pickItem(self):
 
-        if self.picked == False and self.x -1.2 < self.game.player.x < self.x +1.2 and  self.y -1.2 < self.game.player.y < self.y +1.2:
+        if self.picked == False and self.x -0.8 < self.game.player.x < self.x +0.8 and  self.y -0.8 < self.game.player.y < self.y +0.8:
             self.picked=True
             self.game.weapon.rangeupdate = True
             self.x = 0
             self.y = 0
             self.game.weapon.get_images()
+            self.game.weapon.change_weapon()
+            if self.game.weapon.key == 1:
+                self.game.weapon.damage = 400
 
             
 
@@ -234,12 +237,15 @@ class figthingGloves:
 
     def pickItem(self):
 
-        if self.picked == False and self.x -1.2 < self.game.player.x < self.x +1.2 and  self.y -1.2 < self.game.player.y < self.y +1.2:
+        if self.picked == False and self.x -0.8 < self.game.player.x < self.x +0.8 and  self.y -0.8 < self.game.player.y < self.y +0.8:
             self.meleeupdate=True
             self.game.weapon.meleeupdate = True
             self.x = 0
             self.y = 0
             self.game.weapon.get_images()
+            if self.game.weapon.key == 2:
+                self.game.weapon.damage = 200
+
             
 
     def get_sprite_projection(self):

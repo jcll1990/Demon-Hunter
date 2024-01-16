@@ -20,7 +20,7 @@ class Weapon:
         self.reloading = False
         self.animation_time_prev = pg.time.get_ticks()
         self.frame_counter = 0
-        self.damage = 50
+        self.damage = 100
         self.get_images()
         
 
@@ -31,15 +31,15 @@ class Weapon:
             self.key =1
             self.get_images()
             if self.rangeupdate == False:
-                self.damage = 50
-            elif self.rangeupdate == True:
                 self.damage = 100
+            elif self.rangeupdate == True:
+                self.damage = 400
 
         if keys[pg.K_2]:
             self.key=2
             self.get_images()
             if self.meleeupdate == False:
-                self.damage = 100
+                self.damage = 50
             elif self.meleeupdate == True:
                 self.damage = 200
 
