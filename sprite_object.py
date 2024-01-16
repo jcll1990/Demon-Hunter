@@ -106,7 +106,7 @@ class healthPOT:
         self.SPRITE_SCALE = scale
         self.SPRITE_HEIGHT_SHIFT = shift
         self.picked = False
-
+        self.pickedsound = pg.mixer.Sound('resources/sound/yeah.wav')
 
     def pickItem(self):
 
@@ -115,6 +115,7 @@ class healthPOT:
             self.game.player.health += 50
             self.x = 0
             self.y = 0
+            self.pickedsound.play()
 
     def get_sprite_projection(self):
         proj = SCREEN_DIST / self.norm_dist * self.SPRITE_SCALE
@@ -167,7 +168,7 @@ class shoutgun:
         self.SPRITE_SCALE = scale
         self.SPRITE_HEIGHT_SHIFT = shift
         self.picked = False
-
+        self.pickedsound = pg.mixer.Sound('resources/sound/yeah.wav')
 
     def pickItem(self):
 
@@ -178,6 +179,7 @@ class shoutgun:
             self.y = 0
             self.game.weapon.get_images()
             self.game.weapon.change_weapon()
+            self.pickedsound.play()
             if self.game.weapon.key == 1:
                 self.game.weapon.damage = 400
 
@@ -233,6 +235,7 @@ class figthingGloves:
         self.SPRITE_SCALE = scale
         self.SPRITE_HEIGHT_SHIFT = shift
         self.picked = False
+        self.pickedsound = pg.mixer.Sound('resources/sound/yeah.wav')
 
 
     def pickItem(self):
@@ -243,6 +246,7 @@ class figthingGloves:
             self.x = 0
             self.y = 0
             self.game.weapon.get_images()
+            self.pickedsound.play()
             if self.game.weapon.key == 2:
                 self.game.weapon.damage = 200
 
