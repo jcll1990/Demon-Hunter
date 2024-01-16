@@ -48,9 +48,9 @@ class Map:
     def get_map(self): 
         for y, row in enumerate(self.mini_map):
             for x, value in enumerate(row):
-                if value:# remember _ means false, so it wont get added to the world map
-                    self.world_map [(x,y)] = value # getting tuples as key for the object.... an exmple would be {(0,1):1 , (1.2):1}
+                if value:
+                    self.world_map [(x,y)] = value 
     
     def draw(self):
-        [pg.draw.rect(self.game.screen, 'darkgray', (pos[0]*100,pos[1]*100,100,100),2) #I can do pos[0 or 1] bc it is a tuple
+        [pg.draw.rect(self.game.screen, 'darkgray', (pos[0]*100,pos[1]*100,100,100),2) 
          for pos in self.world_map]

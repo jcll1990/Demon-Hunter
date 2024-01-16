@@ -11,7 +11,7 @@ class Weapon:
         self.key = 1
         self.path ='resources/sprites/weapon/bow/'
         self.scale = .1 
-        self.meleeupdate = True
+        self.meleeupdate = False
         self.rangeupdate = False
         self.animation_time = 90
         self.images = []
@@ -26,6 +26,7 @@ class Weapon:
 
     def change_weapon(self):
         keys = pg.key.get_pressed()
+        
         if keys[pg.K_1]:
             self.key =1
             self.get_images()
@@ -88,6 +89,7 @@ class Weapon:
         self.change_weapon()
 
     def draw(self):
+        
         if self.key == 1:
             if self.rangeupdate == False:
                 self.game.screen.blit(self.image, (
