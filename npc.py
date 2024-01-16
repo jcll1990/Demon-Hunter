@@ -5,7 +5,7 @@ from minimap import *
 
 
 class NPC(AnimatedSprite):
-    def __init__(self, game, path='resources/sprites/npc/soldier/0.png', pos=(10.5, 5.5),
+    def __init__(self, game, path='resources/sprites/npc/red_demon/0.png', pos=(10.5, 5.5),
                  scale=0.6, shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_images = self.get_images(self.path + '/attack')
@@ -201,8 +201,8 @@ class NPC(AnimatedSprite):
          #                (100 * self.x, 100 * self.y), 2)
 
 
-class SoldierNPC(NPC):
-    def __init__(self, game, path='resources/sprites/npc/soldier/0.png', pos=(10.5, 5.5),
+class RedDemonNPC(NPC):
+    def __init__(self, game, path='resources/sprites/npc/red_demon/0.png', pos=(10.5, 5.5),
                  scale=0.6, shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
 

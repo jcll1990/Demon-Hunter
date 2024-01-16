@@ -9,8 +9,10 @@ class Weapon:
     def __init__(self, game):
         self.game = game
         self.key = 1
-        self.path ='resources/sprites/weapon/shotgun/'
+        self.path ='resources/sprites/weapon/bow/'
         self.scale = .1 
+        self.meleeupdate = True
+        self.rangeupdate = False
         self.animation_time = 90
         self.images = []
         self.num_images = 0
@@ -27,18 +29,32 @@ class Weapon:
         if keys[pg.K_1]:
             self.key =1
             self.get_images()
-            self.damage = 50
+            if self.rangeupdate == False:
+                self.damage = 50
+            elif self.rangeupdate == True:
+                self.damage = 100
+
         if keys[pg.K_2]:
             self.key=2
             self.get_images()
-            self.damage = 100
+            if self.meleeupdate == False:
+                self.damage = 100
+            elif self.meleeupdate == True:
+                self.damage = 200
 
     def get_images(self):
 
         if self.key == 1:
-            path = 'resources/sprites/weapon/shotgun/'
+            if self.rangeupdate == False:
+                path = 'resources/sprites/weapon/bow/'
+            elif self.rangeupdate == True:
+                path = 'resources/sprites/weapon/shotgun/'
         elif self.key == 2:
-            path = 'resources/sprites/weapon/melee'
+            if self.meleeupdate == False:
+                path = 'resources/sprites/weapon/melee'
+            elif self.meleeupdate == True:
+                path = 'resources/sprites/weapon/melee2'
+
 
         images = deque()
         for file_name in os.listdir(path):
@@ -73,10 +89,16 @@ class Weapon:
 
     def draw(self):
         if self.key == 1:
-            self.game.screen.blit(self.image, (
-                HALF_WIDTH - self.images[0].get_width() // 2,
-                HEIGHT - self.images[0].get_height() * self.scale * 0.75 - 600
-            ))
+            if self.rangeupdate == False:
+                self.game.screen.blit(self.image, (
+                    HALF_WIDTH - self.images[0].get_width() // 2,
+                    HEIGHT - self.images[0].get_height() * self.scale * .01 - 200
+                ))
+            elif self.rangeupdate == True:
+                self.game.screen.blit(self.image, (
+                    HALF_WIDTH - self.images[0].get_width() // 2,
+                    HEIGHT - self.images[0].get_height() * self.scale * 0.75 - 450
+                ))
 
 
         elif self.key == 2:
