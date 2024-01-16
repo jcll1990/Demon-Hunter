@@ -48,9 +48,17 @@ class Player:
         if self.game.weapon.key == 1:
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button ==1 and not self.shot and not self.game.weapon.reloading:
-                    self.game.sound.shotgun.play()
+                    if self.game.weapon.rangeupdate == False:
+                        self.game.sound.bow.play()    
+                    elif self.game.weapon.rangeupdate == True:
+                        self.game.sound.shotgun.play()
                     self.shot = True 
                     self.game.weapon.reloading = True
+                    
+
+
+
+
         elif self.game.weapon.key == 2:
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button ==1 and not self.shot and not self.game.weapon.reloading:

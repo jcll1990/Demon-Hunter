@@ -1,6 +1,8 @@
+import pygame as pg
 from sprite_object import *
 from random import randint, random
 from minimap import *
+
 
 
 
@@ -27,6 +29,7 @@ class NPC(AnimatedSprite):
         self.frame_counter = 0
         self.player_search_trigger = False
         self.y_pos = self.game.minimap.y_pos
+        pg.mixer.init()
 
     def update(self):
         self.check_animation_time()
@@ -58,9 +61,13 @@ class NPC(AnimatedSprite):
 
     def attack(self):
         if self.animation_trigger:
-            self.game.sound.npc_shot.play()
+            if not pg.mixer.get_busy():
+                self.attacksound.play()
             if random() < self.accuracy:
                 self.game.player.get_damage(self.attack_damage)
+
+
+
 
     def animate_death(self):
         if not self.alive:
@@ -77,7 +84,7 @@ class NPC(AnimatedSprite):
     def check_hit_in_npc(self):
         if self.game.weapon.key ==2 and self.ray_cast_value and self.game.player.shot and self.x -1.2 < self.game.player.x < self.x +1.2 and  self.y -1.2 < self.game.player.y < self.y +1.2 :
             if HALF_WIDTH - self.sprite_half_width < self.screen_x < HALF_WIDTH + self.sprite_half_width:
-                self.game.sound.npc_pain.play()
+                self.painsound.play()
                 self.game.player.shot = False
                 self.pain = True
                 self.health -= self.game.weapon.damage
@@ -85,7 +92,7 @@ class NPC(AnimatedSprite):
 
         elif self.game.weapon.key ==1 and self.ray_cast_value and self.game.player.shot:
             if HALF_WIDTH - self.sprite_half_width < self.screen_x < HALF_WIDTH + self.sprite_half_width:
-                self.game.sound.npc_pain.play()
+                self.painsound.play()
                 self.game.player.shot = False
                 self.pain = True
                 self.health -= self.game.weapon.damage
@@ -95,7 +102,7 @@ class NPC(AnimatedSprite):
         if self.health < 1: 
             self.game.alive_npcs -=1
             self.alive = False
-            self.game.sound.npc_death.play()
+            self.deathsound.play()
 
     def run_logic(self):
         if self.alive:
@@ -206,8 +213,12 @@ class RedDemonNPC(NPC):
                  scale=0.6, shift=0.38, animation_time=180):
         super().__init__(game, path, pos, scale, shift, animation_time)
 
-class CacoDemonNPC(NPC):
-    def __init__(self, game, path='resources/sprites/npc/caco_demon/0.png', pos=(10.5, 6.5),
+        self.attacksound = pg.mixer.Sound('resources/sound/NPC/reddemon/attack.wav')
+        self.painsound = pg.mixer.Sound('resources/sound/NPC/reddemon/pain.wav')
+        self.deathsound = pg.mixer.Sound('resources/sound/NPC/reddemon/death.wav')
+
+class MeleeDemon(NPC):
+    def __init__(self, game, path='resources/sprites/npc/melee_demon/0.png', pos=(10.5, 6.5),
                  scale=0.7, shift=0.27, animation_time=250):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 1.0
@@ -216,9 +227,12 @@ class CacoDemonNPC(NPC):
         self.attack_damage = 25
         self.speed = 0.05
         self.accuracy = 0.35
+        self.attacksound = pg.mixer.Sound('resources/sound/NPC/meleedemon/attack.wav')
+        self.painsound = pg.mixer.Sound('resources/sound/NPC/meleedemon/pain.wav')
+        self.deathsound = pg.mixer.Sound('resources/sound/NPC/meleedemon/death.wav')
 
-class CyberDemonNPC(NPC):
-    def __init__(self, game, path='resources/sprites/npc/cyber_demon/0.png', pos=(11.5, 6.0),
+class BigDemon(NPC):
+    def __init__(self, game, path='resources/sprites/npc/big_demon/0.png', pos=(11.5, 6.0),
                  scale=1.0, shift=0.04, animation_time=210):
         super().__init__(game, path, pos, scale, shift, animation_time)
         self.attack_dist = 6
@@ -226,6 +240,9 @@ class CyberDemonNPC(NPC):
         self.attack_damage = 15
         self.speed = 0.055
         self.accuracy = 0.25
+        self.attacksound = pg.mixer.Sound('resources/sound/NPC/bigdemon/attack.wav')
+        self.painsound = pg.mixer.Sound('resources/sound/NPC/bigdemon/pain.wav')
+        self.deathsound = pg.mixer.Sound('resources/sound/NPC/bigdemon/death.wav')
 
 
 
