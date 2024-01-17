@@ -11,8 +11,8 @@ class Sound:
         self.bow = pg.mixer.Sound(self.path + 'bow.wav')
         self.melee = pg.mixer.Sound(self.path + 'melee.wav')
         self.player_pain = pg.mixer.Sound(self.path + 'player_pain.wav')
-        self.theme = pg.mixer.music.load(self.path + 'theme2.wav')
-        pg.mixer.music.set_volume(0.08)
+        self.theme = pg.mixer.music.load(self.path + 'demonhuntertheme.wav')
+        pg.mixer.music.set_volume(0.3)
 
         self.reddemonattack = pg.mixer.Sound('resources/sound/NPC/reddemon/attack.wav')
         self.reddemondeath = pg.mixer.Sound('resources/sound/NPC/reddemon/death.wav')

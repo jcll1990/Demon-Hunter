@@ -148,9 +148,16 @@ class healthPOT:
             self.get_sprite_projection()
 
 
+    def draw_ray_cast(self):
+        self.y_pos = self.game.minimap.minimap_pos()
+        if not self.picked:
+            pg.draw.circle(self.game.screen, 'purple', (self.x * 12, (self.y_pos + self.y *12)), 5)
+
+
     def update(self):
         self.get_sprite()
         self.pickItem()
+        self.draw_ray_cast()
 
         
 class shoutgun:
@@ -215,10 +222,16 @@ class shoutgun:
         if -self.IMAGE_HALF_WIDTH < self.screen_x < (WIDTH + self.IMAGE_HALF_WIDTH) and self.norm_dist > 0.5:
             self.get_sprite_projection()
 
+    def draw_ray_cast(self):
+        self.y_pos = self.game.minimap.minimap_pos()
+        if not self.picked:
+            pg.draw.circle(self.game.screen, 'blue', (self.x * 12, (self.y_pos + self.y *12)), 5)
+
 
     def update(self):
         self.get_sprite()
         self.pickItem()
+        self.draw_ray_cast()
 
 class figthingGloves:
     def __init__(self, game, path='resources/sprites/items/gloves.png',
@@ -282,8 +295,14 @@ class figthingGloves:
         if -self.IMAGE_HALF_WIDTH < self.screen_x < (WIDTH + self.IMAGE_HALF_WIDTH) and self.norm_dist > 0.5:
             self.get_sprite_projection()
 
+    def draw_ray_cast(self):
+        self.y_pos = self.game.minimap.minimap_pos()
+        if not self.picked:
+            pg.draw.circle(self.game.screen, 'blue', (self.x * 12, (self.y_pos + self.y *12)), 5)
+
 
     def update(self):
         self.get_sprite()
         self.pickItem()
+        self.draw_ray_cast()
       

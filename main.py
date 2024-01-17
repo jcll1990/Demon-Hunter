@@ -35,7 +35,7 @@ class Game:
         self.new_game()
  
     def new_game(self):
-        self.enemies = 30
+        self.enemies = 59
         self.map = Map(self)
         self.minimap = Minimap(self)
         self.player = Player(self)

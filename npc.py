@@ -35,7 +35,6 @@ class NPC(AnimatedSprite):
         self.check_animation_time()
         self.get_sprite()
         self.run_logic()
- 
         self.draw_ray_cast()
 
     def check_wall(self, x, y):
@@ -202,7 +201,7 @@ class NPC(AnimatedSprite):
     def draw_ray_cast(self):
         self.y_pos = self.game.minimap.minimap_pos()
         if self.alive:
-            pg.draw.circle(self.game.screen, 'red', (self.x * 12, (self.y_pos + self.y *12)), 5)
+            pg.draw.circle(self.game.screen, self.color, (self.x * 12, (self.y_pos + self.y *12)), 5)
        # if self.ray_cast_player_npc():
         #    pg.draw.line(self.game.screen, 'orange', (100 * self.game.player.x, 100 * self.game.player.y),
          #                (100 * self.x, 100 * self.y), 2)
@@ -216,6 +215,7 @@ class RedDemonNPC(NPC):
         self.attacksound = pg.mixer.Sound('resources/sound/NPC/reddemon/attack.wav')
         self.painsound = pg.mixer.Sound('resources/sound/NPC/reddemon/pain.wav')
         self.deathsound = pg.mixer.Sound('resources/sound/NPC/reddemon/death.wav')
+        self.color = "red"
 
 class MeleeDemon(NPC):
     def __init__(self, game, path='resources/sprites/npc/melee_demon/0.png', pos=(10.5, 6.5),
@@ -230,6 +230,8 @@ class MeleeDemon(NPC):
         self.attacksound = pg.mixer.Sound('resources/sound/NPC/meleedemon/attack.wav')
         self.painsound = pg.mixer.Sound('resources/sound/NPC/meleedemon/pain.wav')
         self.deathsound = pg.mixer.Sound('resources/sound/NPC/meleedemon/death.wav')
+        self.color = "yellow"
+
 
 class BigDemon(NPC):
     def __init__(self, game, path='resources/sprites/npc/big_demon/0.png', pos=(11.5, 6.0),
@@ -243,6 +245,8 @@ class BigDemon(NPC):
         self.attacksound = pg.mixer.Sound('resources/sound/NPC/bigdemon/attack.wav')
         self.painsound = pg.mixer.Sound('resources/sound/NPC/bigdemon/pain.wav')
         self.deathsound = pg.mixer.Sound('resources/sound/NPC/bigdemon/death.wav')
+        self.color = "black"
+
 
 
 
